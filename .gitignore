@@ -1,0 +1,16 @@
+*.egg-info
+*.pyc
+.tox
+build
+dist
+MANIFEST
+env
+venv
+.coverage*
+.noseids
+docs/_build
+.cache*
+.idea/
+integration-test/
+tests-env/
+.pytest_cache/
