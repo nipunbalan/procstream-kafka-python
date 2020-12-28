@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="procestream-kafka-python", # Replace with your own username
-    version="0.0.8",
+    version="0.4.0",
     author="Nipun Balan Thekkummal",
     author_email="dev@technipun.com",
     description="Kafka stream processing microservice",
@@ -14,7 +14,7 @@ setuptools.setup(
     url="https://github.com/nipunbalan/procstream-kafka-python",
     packages=setuptools.find_packages(exclude=("test",)),
     include_package_data=True,
-    install_requires=["kafka-python>=2.0.1", "tweepy>=3.9.0"],
+    install_requires=["kafka-python", "tweepy"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
