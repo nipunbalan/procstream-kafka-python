@@ -1,6 +1,5 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from kafka import KafkaProducer
-from kafka import KafkaConsumer
 import logging as logger
 import json
 import os
@@ -17,8 +16,9 @@ class DataSourceService(ABC):
         self.config = {**default_config, **new_config}
         self.verify_env()
         logger.info("Connecting to Kafka Producer bootstrap server")
-        self.producer_client = KafkaProducer(bootstrap_servers=self.config.get("KAFKA_TARGET_BOOTSTRAP_SERVERS").split(","),
-                                             value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+        self.producer_client = KafkaProducer(
+            bootstrap_servers=self.config.get("KAFKA_TARGET_BOOTSTRAP_SERVERS").split(","),
+            value_serializer=lambda v: json.dumps(v).encode('utf-8'))
         self.target_topic = self.config.get("KAFKA_TARGET_TOPIC")
 
     def verify_env(self):

@@ -11,7 +11,7 @@ logger.basicConfig(format='%(asctime)s|[%(levelname)s]|File:%(filename)s|'
 
 default_config = {"KAFKA_SOURCE_BOOTSTRAP_SERVERS": os.environ.get("KAFKA_SOURCE_BOOTSTRAP_SERVERS",
                                                           "localhost:9092"),
-                  "KAFKA_SOURCE_TOPIC": os.environ.get('KAFKA_SOURCE_TOPIC', 'source_topic'),
+                  "KAFKA_SOURCE_TOPIC": os.environ.get('KAFKA_SOURCE_TOPIC', ''),
                   "KAFKA_TARGET_BOOTSTRAP_SERVERS": os.environ.get("KAFKA_TARGET_BOOTSTRAP_SERVERS",
                                                           "localhost:9092"),
                   "KAFKA_TARGET_TOPIC": os.environ.get('KAFKA_TARGET_TOPIC', ''),

@@ -18,9 +18,9 @@ class FileReader():
                 self.datasource_service_obj.produce_to_topic(line)
 
 
-def main():
-    datasource_service_obj = DataSourceService(new_config)
-
-    file_reader = FileReader(datasource_service_obj, new_config.get("FILE_NAME"))
-
-    file_reader.file_data_producer()
+# def main():
+#     datasource_service_obj = DataSourceService(new_config)
+#
+#     file_reader = FileReader(datasource_service_obj, new_config.get("FILE_NAME"))
+#
+#     file_reader.file_data_producer()
