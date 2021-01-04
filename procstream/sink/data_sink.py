@@ -8,9 +8,8 @@ import os
 logger.basicConfig(format='%(asctime)s|[%(levelname)s]|File:%(filename)s|'
                           'Function:%(funcName)s|Line:%(lineno)s|%(message)s')
 
-
 default_config = {"KAFKA_SOURCE_BOOTSTRAP_SERVERS": os.environ.get("KAFKA_SOURCE_BOOTSTRAP_SERVERS",
-                                                          "localhost:9092"),
+                                                                   ''),
                   "KAFKA_SOURCE_TOPIC": os.environ.get('KAFKA_SOURCE_TOPIC', ''),
                   "MODULE_NAME": os.environ.get('MODULE_NAME', ''),
                   "CONSUMER_GROUP": os.environ.get("CONSUMER_GROUP", '')}
@@ -34,8 +33,10 @@ class DataSinkService(ABC):
         self.config = {**default_config, **new_config}
         self.verify_env()
         logger.info("Connecting to Kafka Consumer bootstrap server")
-        self.consumer_client = KafkaConsumer(self.config.get("KAFKA_SOURCE_TOPIC"), group_id=self.config.get("CONSUMER_GROUP"),
-                                             bootstrap_servers=self.config.get("KAFKA_SOURCE_BOOTSTRAP_SERVERS").split(","),
+        self.consumer_client = KafkaConsumer(self.config.get("KAFKA_SOURCE_TOPIC"),
+                                             group_id=self.config.get("CONSUMER_GROUP"),
+                                             bootstrap_servers=self.config.get("KAFKA_SOURCE_BOOTSTRAP_SERVERS").split(
+                                                 ","),
                                              value_deserializer=lambda v: self.forgiving_json_deserializer(v))
 
     def verify_env(self):

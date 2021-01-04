@@ -5,7 +5,7 @@ import json
 import os
 
 default_config = {"KAFKA_TARGET_BOOTSTRAP_SERVERS": os.environ.get("KAFKA_TARGET_BOOTSTRAP_SERVERS",
-                                                                   "localhost:9092"),
+                                                                   ''),
                   "KAFKA_TARGET_TOPIC": os.environ.get("KAFKA_TARGET_TOPIC", ""),
                   "MODULE_NAME": os.environ.get("MODULE_NAME", ""),
                   "CONSUMER_GROUP": os.environ.get("CONSUMER_GROUP", "")}
