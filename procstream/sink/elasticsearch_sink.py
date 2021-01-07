@@ -21,12 +21,12 @@ class ElasticSearchDataSinkService(DataSinkService):
         new_config = {**config, **new_config}
         super().__init__(new_config)
         logger.info("Initializing ES Injector Module")
-        self.es_host = new_config.get("ES_HOST")
+        self.es_hosts = new_config.get("ES_HOST").split(",")
         self.es_maxsize = int(new_config.get("ES_MAXSIZE"))
         self.es_sniffer_timeout = int(new_config.get("ES_SNIFFER_TIMEOUT"))
         self.es_index = new_config.get("ES_INDEX")
         self.es_doctype = new_config.get("ES_DOCTYPE")
-        self.es = Elasticsearch([self.es_host], maxsize=self.es_maxsize, sniff_on_start=True,
+        self.es = Elasticsearch(self.es_hosts, maxsize=self.es_maxsize, sniff_on_start=True,
                                 sniff_on_connection_fail=True,
                                 sniffer_timeout=self.es_sniffer_timeout, retry_on_timeout=True)
 
