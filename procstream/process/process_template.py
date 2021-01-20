@@ -72,8 +72,11 @@ class StreamProcessMicroService(ABC):
         print("Starting consumer")
         for message in self.consumer_client:
             processed_message = self.process_message(message)
-            if processed_message:
+            if processed_message and type(processed_message) is not tuple:
                 self.producer_client.send(self.target_topic, processed_message)
+            elif processed_message and type(processed_message) is tuple and len(processed_message) >= 2:
+                target_publishing_topic = self.target_topic if processed_message[1] is None else processed_message[1]
+                self.producer_client.send(target_publishing_topic, processed_message[0])
 
     def start_service(self):
         self.kafka_pipeline_service()
